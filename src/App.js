@@ -56,12 +56,12 @@ const calculate = (e) => {
         </div>
         <div>
           <label>Gender</label>
-          <input type='radio' name="Gender" value='Male' onChange={(e) => setGender(e.target.value)}></input>
+          <input type='radio' name="Gender" value='male' onChange={e => setGender(e.target.value)}></input>
           <label>Male</label>
-          <input type='radio' name='Gender' value='Female' onChange={(e) => setGender(e.target.value)}></input>
+          <input type='radio' name='Gender' value='female' onChange={e => setGender(e.target.value)}></input>
           <label>Female</label>
         </div>
-        <output>{result.toFixed(1)}</output>
+        <output>{result.toFixed(2)}</output>
         <div>
         <button type='button' onClick={calculate}>calculate</button>
         </div>
