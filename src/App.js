@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Alcometer</h1>
+      <div>
+        <label>Weight</label>
+        <input type='number'></input>
+      </div>
+      <div>
+      <label>Bottles</label>
+        <input type='number'></input>
+        </div>
+        <div>
+      <label>Time</label>
+        <input type='number'></input>
+        </div>
+        <div class='custom-control custom-radio'>
+          <label>Gender</label>
+          <input type='radio' class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"></input>
+          <label class="custom-control-label" for="defaultChecked">Male</label>
+          <input type='radio' class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"></input>
+          <label class="custom-control-label" for="defaultChecked">Female</label>
+        </div>
     </div>
   );
 }
