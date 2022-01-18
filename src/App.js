@@ -1,37 +1,51 @@
-import {useState} from 'react'
+import {useState} from 'react';
 import './App.css';
 
 function App() {
 
-const [Weight, setWeight] = useState(0);
-const [Bottles,setBottles] = useState(0);
+const [Weight, setWeight] = useState(90);
+const [Bottles, setBottles] = useState(0);
 const [Time, setTime] = useState(0);
+const [Gender, setGender] = useState('male');
+const [result, setResult] = useState(0);
 
-function calculate(e) {
-  e.prevenDefault();
+const calculate = (e) => {
+ 
   const litres = Bottles * 0.33;
   const burning = Weight / 10;
+  const grams = litres * 8 * 4.5
+  const left = grams - (burning * Time)
+
+  let alcohol = 0;
+
+  if(Gender === 'male') {
+    alcohol = left / (Weight * 0.7);
+  } else {
+    alcohol = left / (Weight * 0.6);
+  }
+   if(alcohol < 0 ) {
+    setResult(0);
+  } else {
+    setResult(alcohol);
+  }
 
 }
-
-
   return (
-    <div className="App">
-      <form onSubmit={calculate}>
-      <h1>Alcometer</h1>
+    <div>
+       <h1>Alcometer</h1>
       <div>
         <label>Weight</label>
         <input 
-        type='number'
-         value={Weight}
-         onChange={e => setWeight(e.target.value)}></input>
+          type='number'
+          value={Weight}
+          onChange={e => setWeight(e.target.value)}></input>
       </div>
       <div>
       <label>Bottles</label>
         <input
-         type='number'
+        type='number'
         value={Bottles}
-        onChange={e => setBottles(e.target.value)}></input>
+        onChange={e => setBottles(e.target.value)}></input>       
         </div>
         <div>
       <label>Time</label>
@@ -40,19 +54,17 @@ function calculate(e) {
          value={Time}
          onChange={e => setTime(e.target.value)}></input>
         </div>
-        <div class='custom-control custom-radio'>
-          <label>Gender</label>
-          <input type='radio' class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"></input>
-          <label class="custom-control-label" for="defaultChecked">Male</label>
-          <input type='radio' class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"></input>
-          <label class="custom-control-label" for="defaultChecked">Female</label>
-
-        </div>
         <div>
-        <button class="btn btn-secondary">Check</button>
-          <output></output>
+          <label>Gender</label>
+          <input type='radio' name="Gender" value='Male' onChange={(e) => setGender(e.target.value)}></input>
+          <label>Male</label>
+          <input type='radio' name='Gender' value='Female' onChange={(e) => setGender(e.target.value)}></input>
+          <label>Female</label>
         </div>
-        </form>
+        <output>{result.toFixed(1)}</output>
+        <div>
+        <button type='button' onClick={calculate}>calculate</button>
+        </div>
     </div>
   );
 }
