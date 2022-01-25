@@ -8,8 +8,8 @@ function App() {
   const [gender, setGender] = useState('male');
   const [result, setResult] = useState(0);
 
-function calculate(e) {
-  e.preventDefault();
+const calculate = () => {
+ 
   const litres = bottles * 0.33;
   const burning = weight / 10;
   const grams = litres * 8 * 4.5
@@ -30,7 +30,7 @@ function calculate(e) {
 
 }
   return (
-    <form onSubmit={calculate}>
+    <div>
        <h1>Alcometer</h1>
       <div>
         <label>Weight</label>
@@ -94,11 +94,11 @@ function calculate(e) {
           <input type='radio' name='gender' value='female' onChange={e => setGender(e.target.value)}></input>
           <label>Female</label>
         </div>
-        <output>{result.toFixed(2)}</output>
+        <output>{result.toFixed(1)}</output>
         <div>
-        <button type='button'>calculate</button>
+        <button type='button' onClick={calculate}>calculate</button>
         </div>
-        </form>
+        </div>
   );
 }
 
