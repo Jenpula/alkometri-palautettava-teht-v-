@@ -2,26 +2,25 @@ import {useState} from 'react';
 import './App.css';
 
 function App() {
+  const [weight, setWeight] = useState(90);
+  const [bottles, setBottles] = useState(0);
+  const [time, setTime] = useState(0);
+  const [gender, setGender] = useState('male');
+  const [result, setResult] = useState(0);
 
-const [Weight, setWeight] = useState(90);
-const [Bottles, setBottles] = useState(0);
-const [Time, setTime] = useState(0);
-const [Gender, setGender] = useState('male');
-const [result, setResult] = useState(0);
-
-const calculate = (e) => {
- 
-  const litres = Bottles * 0.33;
-  const burning = Weight / 10;
+function calculate(e) {
+  e.preventDefault();
+  const litres = bottles * 0.33;
+  const burning = weight / 10;
   const grams = litres * 8 * 4.5
-  const left = grams - (burning * Time)
+  const left = grams - (burning * time)
 
   let alcohol = 0;
 
-  if(Gender === 'male') {
-    alcohol = left / (Weight * 0.7);
+  if(gender === 'male') {
+    alcohol = left / (weight * 0.7);
   } else {
-    alcohol = left / (Weight * 0.6);
+    alcohol = left / (weight * 0.6);
   }
    if(alcohol < 0 ) {
     setResult(0);
@@ -31,41 +30,75 @@ const calculate = (e) => {
 
 }
   return (
-    <div>
+    <form onSubmit={calculate}>
        <h1>Alcometer</h1>
       <div>
         <label>Weight</label>
         <input 
           type='number'
-          value={Weight}
+          value={weight}
           onChange={e => setWeight(e.target.value)}></input>
       </div>
       <div>
       <label>Bottles</label>
-        <input
+        <select
         type='number'
-        value={Bottles}
-        onChange={e => setBottles(e.target.value)}></input>       
+        value={bottles}
+        onChange={e => setBottles(e.target.value)}>
+          <option value='0'>0</option>
+         <option value='1'>1</option>
+         <option value='2'>2</option>
+         <option value='3'>3</option>
+         <option value='4'>4</option>
+         <option value='5'>5</option>
+         <option value='6'>6</option>
+         <option value='7'>7</option>
+         <option value='8'>8</option>
+         <option value='9'>9</option>
+         <option value='10'>10</option>    
+         <option value='11'>11</option>
+         <option value='12'>12</option>
+         <option value='13'>13</option>
+         <option value='14'>14</option>
+         <option value='15'>15</option>
+         <option value='16'>16</option>
+         <option value='17'>17</option>
+         <option value='18'>18</option>
+         <option value='19'>19</option>
+         <option value='20'>20</option>
+         </select>
         </div>
         <div>
       <label>Time</label>
-        <input
+        <select
          type='number'
-         value={Time}
-         onChange={e => setTime(e.target.value)}></input>
+         value={time}
+         onChange={e => setTime(e.target.value)}>
+         <option value='0'>0</option>
+         <option value='1'>1</option>
+         <option value='2'>2</option>
+         <option value='3'>3</option>
+         <option value='4'>4</option>
+         <option value='5'>5</option>
+         <option value='6'>6</option>
+         <option value='7'>7</option>
+         <option value='8'>8</option>
+         <option value='9'>9</option>
+         <option value='10'>10</option>
+         </select>
         </div>
         <div>
           <label>Gender</label>
-          <input type='radio' name="Gender" value='male' onChange={e => setGender(e.target.value)}></input>
+          <input type='radio' name="gender" value='male' defaultChecked onChange={e => setGender(e.target.value)}></input>
           <label>Male</label>
-          <input type='radio' name='Gender' value='female' onChange={e => setGender(e.target.value)}></input>
+          <input type='radio' name='gender' value='female' onChange={e => setGender(e.target.value)}></input>
           <label>Female</label>
         </div>
         <output>{result.toFixed(2)}</output>
         <div>
-        <button type='button' onClick={calculate}>calculate</button>
+        <button type='button'>calculate</button>
         </div>
-    </div>
+        </form>
   );
 }
 
