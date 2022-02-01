@@ -1,7 +1,18 @@
 label {
   margin: 5px;
   padding: 5px;
+  font-weight: bold;
 }
 body {
   text-align: center;
+  background-image: url('/public/Paper.jpg');
+  padding: 50px;
 }
+
+output {
+  font-weight: bold;
+}
+button {
+ margin: 10px;
+}
+

@@ -96,7 +96,7 @@ const calculate = () => {
         </div>
         <output>{result.toFixed(1)}</output>
         <div>
-        <button type='button' onClick={calculate}>calculate</button>
+        <button type='button' class='btn btn-dark' onClick={calculate}>calculate</button>
         </div>
         </div>
   );
